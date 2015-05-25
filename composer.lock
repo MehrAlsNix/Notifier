@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5cf5ae7848a082b3bbb36d4b79d57789",
+    "hash": "e7395f86a549fe91714efe8b03070111",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -59,6 +59,17 @@
                 "instantiate"
             ],
             "time": "2014-10-13 12:58:55"
+        },
+        {
+            "name": "nels-o/toaster",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/nels-o/toaster/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1590,7 +1601,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "nels-o/toaster": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

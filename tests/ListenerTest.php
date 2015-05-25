@@ -34,4 +34,12 @@ class ListenerTest extends TestCase
     {
         $this->assertInstanceOf('MehrAlsNix\Notifier\Listener', new Listener());
     }
+
+    /**
+     * @test
+     */
+    public function skipped()
+    {
+        $this->markTestSkipped('Notification should be send.');
+    }
 }
