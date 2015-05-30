@@ -23,7 +23,7 @@ use PHPUnit_Framework_BaseTestListener as BaseTestListener;
 use PHPUnit_Framework_Test;
 use PHPUnit_Framework_TestSuite as TestSuite;
 
-class Listener extends BaseTestListener
+abstract class ListenerBase extends BaseTestListener
 {
     public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
@@ -55,21 +55,25 @@ class Listener extends BaseTestListener
         parent::addSkippedTest($test, $e, $time);
     }
 
-    protected function notify($title, $message)
-    {
-        if (strtoupper(substr(php_uname('s'), 0, 3)) === 'WIN') {
-            exec(__DIR__ . "/../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t \"{$title}}\" -m \"{$message}\"");
-        } elseif ($this->execute('which terminal-notifier')) {
-            $this->execute("terminal-notifier -title '{$title}' -message '{$message}' -sender com.apple.Terminal");
-        } elseif ($this->execute('which notify-send')) {
-            $this->execute("notify-send -t 2000 '{$title}' '$message'");
-        } else {
-            echo PHP_EOL;
-            echo "{$title} - {$message}";
-            echo PHP_EOL;
-            echo PHP_EOL;
-        }
+    abstract protected function notify($title, $message);
+
+    /*
+{
+    $this->notifier->notify($title, $message);
+    if (strtoupper(substr(php_uname('s'), 0, 3)) === 'WIN') {
+        exec(__DIR__ . "/../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t \"{$title}}\" -m \"{$message}\"");
+    } elseif ($this->execute('which terminal-notifier')) {
+        $this->execute("terminal-notifier -title '{$title}' -message '{$message}' -sender com.apple.Terminal");
+    } elseif ($this->execute('which notify-send')) {
+        $this->execute("notify-send -t 2000 '{$title}' '$message'");
+    } else {
+        echo PHP_EOL;
+        echo "{$title} - {$message}";
+        echo PHP_EOL;
+        echo PHP_EOL;
     }
+    }
+    */
 
     protected function execute($command)
     {
@@ -79,3 +83,4 @@ class Listener extends BaseTestListener
         return !$status ? $result : null;
     }
 }
+
