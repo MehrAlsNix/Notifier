@@ -25,34 +25,27 @@ use PHPUnit_Framework_TestSuite as TestSuite;
 
 class Listener extends BaseTestListener
 {
-    public function endTestSuite(TestSuite $suite)
-    {
-        parent::endTestSuite($suite);
-    }
-
     public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
-        if (strtoupper(substr(php_uname('s'), 0, 3)) === 'WIN') {
-            exec(__DIR__ . "/../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t Error -m \"{$e->getMessage()}\"");
-        }
+        $this->notify("Error", $e->getMessage());
         parent::addError($test, $e, $time);
     }
 
     public function addFailure(PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time)
     {
-        if (strtoupper(substr(php_uname('s'), 0, 3)) === 'WIN') {
-            exec(__DIR__ . "/../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t Failure -m \"{$e->getMessage()}\"");
-        }
+        $this->notify("Failure", $e->getMessage());
         parent::addFailure($test, $e, $time);
     }
 
     public function addIncompleteTest(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
+        $this->notify("Incomplete Test", $e->getMessage());
         parent::addIncompleteTest($test, $e, $time);
     }
 
     public function addRiskyTest(PHPUnit_Framework_Test $test, Exception $e, $time)
     {
+        $this->notify("Risky Test", $e->getMessage());
         parent::addRiskyTest($test, $e, $time);
     }
 
@@ -62,21 +55,6 @@ class Listener extends BaseTestListener
         parent::addSkippedTest($test, $e, $time);
     }
 
-    public function startTestSuite(TestSuite $suite)
-    {
-        parent::startTestSuite($suite);
-    }
-
-    public function startTest(PHPUnit_Framework_Test $test)
-    {
-        parent::startTest($test);
-    }
-
-    public function endTest(PHPUnit_Framework_Test $test, $time)
-    {
-        parent::endTest($test, $time);
-    }
-    
     protected function notify($title, $message)
     {
         if (strtoupper(substr(php_uname('s'), 0, 3)) === 'WIN') {
