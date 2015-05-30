@@ -40,6 +40,7 @@ class ListenerTest extends TestCase
      */
     public function skipped()
     {
-        $this->markTestSkipped('Notification should be send.');
+        $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
+        $this->assertNull((new Listener())->addSkippedTest($testMock, new \Exception('Notification should be send.'), time()));
     }
 }
