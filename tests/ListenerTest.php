@@ -43,4 +43,22 @@ class ListenerTest extends TestCase
         $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
         $this->assertNull((new Listener())->addSkippedTest($testMock, new \Exception('Notification should be send.'), time()));
     }
+
+    /**
+     * @test
+     */
+    public function risky()
+    {
+        $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
+        $this->assertNull((new Listener())->addRiskyTest($testMock, new \Exception('Notification should be send.'), time()));
+    }
+
+    /**
+     * @test
+     */
+    public function incomplete()
+    {
+        $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
+        $this->assertNull((new Listener())->addIncompleteTest($testMock, new \Exception('Notification should be send.'), time()));
+    }
 }
