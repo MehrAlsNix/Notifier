@@ -18,6 +18,7 @@
 namespace MehrAlsNix\Notifier\Tests;
 
 use MehrAlsNix\Notifier\Listener;
+use MehrAlsNix\Notifier\WindowsDefaultListener;
 use PHPUnit_Framework_TestCase as TestCase;
 
 class ListenerTest extends TestCase
@@ -32,7 +33,7 @@ class ListenerTest extends TestCase
      */
     public function instantiation()
     {
-        $this->assertInstanceOf('MehrAlsNix\Notifier\Listener', new Listener());
+        $this->assertInstanceOf('MehrAlsNix\Notifier\Listener', new WindowsDefaultListener());
     }
 
     /**
@@ -41,7 +42,7 @@ class ListenerTest extends TestCase
     public function skipped()
     {
         $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
-        $this->assertNull((new Listener())->addSkippedTest($testMock, new \Exception('Notification should be send.'), time()));
+        $this->assertNull((new WindowsDefaultListener())->addSkippedTest($testMock, new \Exception('Notification should be send.'), time()));
     }
 
     /**
@@ -50,7 +51,7 @@ class ListenerTest extends TestCase
     public function risky()
     {
         $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
-        $this->assertNull((new Listener())->addRiskyTest($testMock, new \Exception('Notification should be send.'), time()));
+        $this->assertNull((new WindowsDefaultListener())->addRiskyTest($testMock, new \Exception('Notification should be send.'), time()));
     }
 
     /**
@@ -59,6 +60,6 @@ class ListenerTest extends TestCase
     public function incomplete()
     {
         $testMock = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
-        $this->assertNull((new Listener())->addIncompleteTest($testMock, new \Exception('Notification should be send.'), time()));
+        $this->assertNull((new WindowsDefaultListener())->addIncompleteTest($testMock, new \Exception('Notification should be send.'), time()));
     }
 }
