@@ -17,58 +17,16 @@
 
 namespace MehrAlsNix\Notifier;
 
-use Exception;
-use PHPUnit_Framework_AssertionFailedError;
-use PHPUnit_Framework_BaseTestListener as BaseTestListener;
-use PHPUnit_Framework_Test;
-use PHPUnit_Framework_TestSuite as TestSuite;
-
-abstract class ListenerBase extends BaseTestListener
+/**
+ * Notification Listener.
+ */
+abstract class ListenerBase
 {
-    public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
-    {
-        $this->notify("Error", $e->getMessage());
-        parent::addError($test, $e, $time);
-    }
-
-    public function addFailure(PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time)
-    {
-        $this->notify("Failure", $e->getMessage());
-        parent::addFailure($test, $e, $time);
-    }
-
-    public function addIncompleteTest(PHPUnit_Framework_Test $test, Exception $e, $time)
-    {
-        $this->notify("Incomplete Test", $e->getMessage());
-        parent::addIncompleteTest($test, $e, $time);
-    }
-
-    public function addRiskyTest(PHPUnit_Framework_Test $test, Exception $e, $time)
-    {
-        $this->notify("Risky Test", $e->getMessage());
-        parent::addRiskyTest($test, $e, $time);
-    }
-
-    public function addSkippedTest(PHPUnit_Framework_Test $test, Exception $e, $time)
-    {
-        $this->notify("Skipped Test", $e->getMessage());
-        parent::addSkippedTest($test, $e, $time);
-    }
-
-    /*
-    $this->execute('which terminal-notifier')) {
-    $this->execute("terminal-notifier -title '{$title}' -message '{$message}' -sender com.apple.Terminal");
-    */
-
+    /**
+     * @param string $title
+     * @param string $message
+     * @return mixed
+     */
     abstract protected function notify($title, $message);
-
-
-    protected function execute($command)
-    {
-        $status = null;
-        $result = [];
-        exec($command, $result, $status);
-        return !$status ? $result : null;
-    }
 }
 

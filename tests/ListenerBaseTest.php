@@ -1,19 +1,30 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: said
- * Date: 30.05.2015
- * Time: 15:44
+ * Notifier
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * @copyright 2015 MehrAlsNix (http://www.mehralsnix.de)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT
+ * @link      http://github.com/MehrAlsNix/Notifier
  */
 
 namespace MehrAlsNix\Notifier\Tests;
 
+use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
 
-use PHPUnit_Framework_AssertionFailedError;
-
+/**
+ * Class ListenerBaseTest
+ * @package MehrAlsNix\Notifier\Tests
+ */
 class ListenerBaseTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @dataProvider getExceptionAsserted
      */
@@ -21,40 +32,39 @@ class ListenerBaseTest extends \PHPUnit_Framework_TestCase
     {
         $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\ListenerBase')
             ->setMethods(['notify'])
-            ->getMockForAbstractClass()
-
-            ;
+            ->getMockForAbstractClass();
 
         $partialMock->expects($this->once())
             ->method('notify')
-            ->with($title, $content)
-            ;
-        $mockTest = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test')
-            ;
-        $partialMock->$method($mockTest, new \Exception($content), time());
+            ->with($title, $content);
 
+        $mockTest = $this->getMockObjectGenerator()
+            ->getMock('PHPUnit_Framework_Test');
+
+        $partialMock->$method($mockTest, new \Exception($content), time());
     }
 
     public function testNotifyIsCalledByAddFailure()
     {
         $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\ListenerBase')
             ->setMethods(['notify'])
-            ->getMockForAbstractClass()
-
-        ;
+            ->getMockForAbstractClass();
 
         $title = 'Failure';
         $content = '';
         $partialMock->expects($this->once())
             ->method('notify')
-            ->with($title, $content)
-        ;
+            ->with($title, $content);
 
-        $mockTest = $this->getMockObjectGenerator()->getMock('PHPUnit_Framework_Test');
-        $partialMock->addFailure($mockTest, new PHPUnit_Framework_AssertionFailedError($content), time());
+        $mockTest = $this->getMockObjectGenerator()
+            ->getMock('PHPUnit_Framework_Test');
 
+        $partialMock->addFailure($mockTest, new AssertionFailedError($content), time());
     }
 
+    /**
+     * @return array
+     */
     public function getExceptionAsserted()
     {
         return [

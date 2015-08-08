@@ -13,28 +13,25 @@
  * @copyright 2015 MehrAlsNix (http://www.mehralsnix.de)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
  * @link      http://github.com/MehrAlsNix/Notifier
- * @version   $Id$
  */
 
 namespace MehrAlsNix\Notifier;
 
-class LinuxDefaultListener extends NotificationListenerBase
+/**
+ * Class NotificationListenerBase
+ * @package MehrAlsNix\Notifier
+ */
+abstract class NotificationListenerBase extends ListenerBase
 {
     /**
-     * @param string $title
-     * @param string $message
-     * @return null
+     * @param string $command
+     * @return array|null
      */
-    protected function notify($title, $message)
+    protected function execute($command)
     {
-        $this->execute("notify-send -t 2000 '{$title}' '$message'");
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAvailable()
-    {
-        return $this->execute('which notify-send');
+        $status = null;
+        $result = [];
+        exec($command, $result, $status);
+        return !$status ? $result : null;
     }
 }
