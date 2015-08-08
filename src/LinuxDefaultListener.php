@@ -18,7 +18,7 @@
 
 namespace MehrAlsNix\Notifier;
 
-class LinuxDefaultListener extends NotificationListenerBase
+class LinuxDefaultListener extends NotificationBase
 {
     /**
      * @param string $title

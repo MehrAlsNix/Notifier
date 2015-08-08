@@ -21,8 +21,24 @@ namespace MehrAlsNix\Notifier;
  * Class NotificationListenerBase
  * @package MehrAlsNix\Notifier
  */
-abstract class NotificationListenerBase extends ListenerBase
+abstract class NotificationBase
 {
+    /**
+     * An error occurred.
+     * @param string $msg
+     */
+    public function addMessage($title, $msg)
+    {
+        $this->notify($title, $msg);
+    }
+
+    /**
+     * @param string $title
+     * @param string $message
+     * @return mixed
+     */
+    abstract protected function notify($title, $message);
+
     /**
      * @param string $command
      * @return array|null

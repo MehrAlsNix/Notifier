@@ -22,7 +22,7 @@ namespace MehrAlsNix\Notifier;
  * Class WindowsDefaultListener
  * @package MehrAlsNix\Notifier
  */
-class WindowsDefaultListener extends NotificationListenerBase
+class WindowsDefaultListener extends NotificationBase
 {
     /**
      * @param string $title

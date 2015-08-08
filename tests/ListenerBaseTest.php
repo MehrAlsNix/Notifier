@@ -25,28 +25,9 @@ use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
  */
 class ListenerBaseTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider getExceptionAsserted
-     */
-    public function testNotifyIsCalledByAddError($method, $title, $content)
-    {
-        $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\ListenerBase')
-            ->setMethods(['notify'])
-            ->getMockForAbstractClass();
-
-        $partialMock->expects($this->once())
-            ->method('notify')
-            ->with($title, $content);
-
-        $mockTest = $this->getMockObjectGenerator()
-            ->getMock('PHPUnit_Framework_Test');
-
-        $partialMock->$method($mockTest, new \Exception($content), time());
-    }
-
     public function testNotifyIsCalledByAddFailure()
     {
-        $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\ListenerBase')
+        $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\NotificationBase')
             ->setMethods(['notify'])
             ->getMockForAbstractClass();
 
@@ -59,19 +40,7 @@ class ListenerBaseTest extends \PHPUnit_Framework_TestCase
         $mockTest = $this->getMockObjectGenerator()
             ->getMock('PHPUnit_Framework_Test');
 
-        $partialMock->addFailure($mockTest, new AssertionFailedError($content), time());
-    }
-
-    /**
-     * @return array
-     */
-    public function getExceptionAsserted()
-    {
-        return [
-            ['addError', 'Error', 'error message'],
-            ['addRiskyTest', 'Risky Test', 'risky Test !'],
-            ['addIncompleteTest', 'Incomplete Test', 'incomplete Test !'],
-            ['addSkippedTest', 'Skipped Test', 'skipped Test !']
-        ];
+        $fE = new AssertionFailedError($content);
+        $partialMock->addMessage('Failure', $fE->getMessage());
     }
 }

@@ -18,7 +18,7 @@
 
 namespace MehrAlsNix\Notifier;
 
-class MacDefaultListener extends NotificationListenerBase
+class MacDefaultListener extends NotificationBase
 {
     /**
      * @param string $title
