@@ -1,6 +1,7 @@
 language: php
 
 php:
+  - 5.2
   - 5.3
   - 5.4
   - 5.5
@@ -17,6 +18,7 @@ cache:
 matrix:
   allow_failures:
     - php: hhvm
+    - php: 5.2
     - php: nightly
   fast_finish: true
 
