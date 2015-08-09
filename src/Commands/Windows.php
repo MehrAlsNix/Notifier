@@ -16,13 +16,14 @@
  * @version   $Id$
  */
 
-namespace MehrAlsNix\Notifier;
+namespace MehrAlsNix\Notifier\Commands;
+use MehrAlsNix\Notifier\Notification;
 
 /**
  * Class WindowsDefaultListener
  * @package MehrAlsNix\Notifier
  */
-class WindowsDefaultListener extends NotificationBase
+class WindowsDefaultListener extends Notification
 {
     /**
      * @param string $title
@@ -31,7 +32,7 @@ class WindowsDefaultListener extends NotificationBase
      */
     protected function notify($title, $message)
     {
-        $this->execute(__DIR__ . "/../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t \"{$title}\" -m \"{$message}\"");
+        $this->execute(__DIR__ . "/../../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t \"{$title}\" -m \"{$message}\"");
     }
 
     /**

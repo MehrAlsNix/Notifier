@@ -20,14 +20,14 @@ namespace MehrAlsNix\Notifier\Tests;
 use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
 
 /**
- * Class ListenerBaseTest
+ * Class NotificationTest
  * @package MehrAlsNix\Notifier\Tests
  */
-class ListenerBaseTest extends \PHPUnit_Framework_TestCase
+class NotificationTest extends \PHPUnit_Framework_TestCase
 {
     public function testNotifyIsCalledByAddFailure()
     {
-        $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\NotificationBase')
+        $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\Notification')
             ->setMethods(['notify'])
             ->getMockForAbstractClass();
 

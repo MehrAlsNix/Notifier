@@ -13,28 +13,44 @@
  * @copyright 2015 MehrAlsNix (http://www.mehralsnix.de)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
  * @link      http://github.com/MehrAlsNix/Notifier
- * @version   $Id$
  */
 
 namespace MehrAlsNix\Notifier;
 
-class MacDefaultListener extends NotificationBase
+/**
+ * Class Notification
+ * @package MehrAlsNix\Notifier
+ */
+abstract class Notification
 {
     /**
-     * @param string $title
-     * @param string $message
-     * @return null
+     * An error occurred.
+     * @param string $msg
      */
-    protected function notify($title, $message)
+    public function addMessage($title, $msg)
     {
-        $this->execute("terminal-notifier -title '{$title}' -message '{$message}' -sender com.apple.Terminal");
+        $this->notify($title, $msg);
     }
 
     /**
-     * @return bool
+     * Notify.
+     *
+     * @param string $title
+     * @param string $message
+     *
+     * @return mixed
      */
-    public function isAvailable()
+    abstract protected function notify($title, $message);
+
+    /**
+     * @param string $command
+     * @return array|null
+     */
+    protected function execute($command)
     {
-        return $this->execute('which terminal-notifier');
+        $status = null;
+        $result = [];
+        exec($command, $result, $status);
+        return !$status ? $result : null;
     }
 }

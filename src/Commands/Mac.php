@@ -16,9 +16,11 @@
  * @version   $Id$
  */
 
-namespace MehrAlsNix\Notifier;
+namespace MehrAlsNix\Notifier\Commands;
 
-class LinuxDefaultListener extends NotificationBase
+use MehrAlsNix\Notifier\Notification;
+
+class MacDefaultListener extends Notification
 {
     /**
      * @param string $title
@@ -27,7 +29,7 @@ class LinuxDefaultListener extends NotificationBase
      */
     protected function notify($title, $message)
     {
-        $this->execute("notify-send -t 2000 '{$title}' '$message'");
+        $this->execute("terminal-notifier -title '{$title}' -message '{$message}' -sender com.apple.Terminal");
     }
 
     /**
@@ -35,6 +37,6 @@ class LinuxDefaultListener extends NotificationBase
      */
     public function isAvailable()
     {
-        return $this->execute('which notify-send');
+        return $this->execute('which terminal-notifier');
     }
 }
