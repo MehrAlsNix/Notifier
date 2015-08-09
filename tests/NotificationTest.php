@@ -41,6 +41,6 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->getMock('PHPUnit_Framework_Test');
 
         $fE = new AssertionFailedError($content);
-        $partialMock->addMessage('Failure', $fE->getMessage());
+        $partialMock->sendMessage('Failure', $fE->getMessage());
     }
 }
