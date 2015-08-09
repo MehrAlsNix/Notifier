@@ -23,7 +23,6 @@
     "nels-o/toaster": "dev-master"
   },
   "require-dev": {
-    "mehr-als-nix/assumptions": "~1",
     "codeclimate/php-test-reporter": "0.*"
   },
   "autoload": {
