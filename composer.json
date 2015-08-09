@@ -18,7 +18,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=5.4",
+    "php": ">=5.3",
     "phpunit/phpunit": "~4",
     "nels-o/toaster": "dev-master"
   },
