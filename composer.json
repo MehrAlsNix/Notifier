@@ -17,6 +17,9 @@
     "wiki": "https://github.com/MehrAlsNix/Notifier/wiki"
   },
   "minimum-stability": "stable",
+  "config": {
+    "preferred-install": "dist"
+  },
   "require": {
     "php": ">=5.3",
     "phpunit/phpunit": "~4",
