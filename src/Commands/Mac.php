@@ -20,7 +20,7 @@ namespace MehrAlsNix\Notifier\Commands;
 
 use MehrAlsNix\Notifier\Notification;
 
-class MacDefaultListener extends Notification
+class Mac extends Notification
 {
     /**
      * @param string $title
@@ -37,6 +37,6 @@ class MacDefaultListener extends Notification
      */
     public function isAvailable()
     {
-        return $this->execute('which terminal-notifier');
+        return (bool) $this->execute('which terminal-notifier');
     }
 }

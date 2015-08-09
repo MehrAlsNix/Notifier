@@ -23,7 +23,7 @@ use MehrAlsNix\Notifier\Notification;
  * Class WindowsDefaultListener
  * @package MehrAlsNix\Notifier
  */
-class WindowsDefaultListener extends Notification
+class Windows extends Notification
 {
     /**
      * @param string $title
