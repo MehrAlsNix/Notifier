@@ -1,27 +1,22 @@
 {
   "name": "mehr-als-nix/notifier",
-  "description": "PHPUnit notify listener",
-  "minimum-stability": "stable",
+  "description": "Desktop Notifier Library.",
+  "homepage": "http://mehralsnix.github.io/Notifier",
   "license": "MIT",
+  "type": "library",
   "authors": [
     {
       "name": "Siad Ardroumli",
-      "email": "siad.ardroumli@gmail.com"
+      "email": "siad.ardroumli@gmail.com",
+      "role": "Lead"
     }
   ],
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "nels-o/toaster",
-        "version": "dev-master",
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/nels-o/toaster/archive/master.zip"
-        }
-      }
-    }
-  ],
+  "support": {
+    "source": "https://github.com/MehrAlsNix/Notifier",
+    "issues": "https://github.com/MehrAlsNix/Notifier/issues",
+    "wiki": "https://github.com/MehrAlsNix/Notifier/wiki"
+  },
+  "minimum-stability": "stable",
   "require": {
     "php": ">=5.4",
     "phpunit/phpunit": "~4",
@@ -36,5 +31,18 @@
       "MehrAlsNix\\Notifier\\": "src",
       "MehrAlsNix\\Notifier\\Tests\\": "tests"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "nels-o/toaster",
+        "version": "dev-master",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/nels-o/toaster/archive/master.zip"
+        }
+      }
+    }
+  ]
 }
