@@ -20,12 +20,20 @@ namespace MehrAlsNix\Notifier\Commands;
 
 use MehrAlsNix\Notifier\Notification;
 
+/**
+ * Class Linux.
+ *
+ * @package MehrAlsNix\Notifier\Commands
+ */
 class Linux extends Notification
 {
     /**
+     * Notify with `notify-send`.
+     *
      * @param string $title
      * @param string $message
-     * @return null
+     *
+     * @return void
      */
     protected function notify($title, $message)
     {
@@ -33,6 +41,8 @@ class Linux extends Notification
     }
 
     /**
+     * @inheritdoc
+     *
      * @return bool
      */
     public function isAvailable()

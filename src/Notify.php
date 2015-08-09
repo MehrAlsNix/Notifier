@@ -68,14 +68,14 @@ class Notify
             'WIN' => new Commands\Windows()
         );
 
+        $instance = 'No valid desktop notifier found.';
+
         if ($command['WIN']->isAvailable()) {
             $instance = $command['WIN'];
         } elseif($command['LINUX']->isAvailable()) {
             $instance = $command['LINUX'];
         } elseif($command['MAC']->isAvailable()) {
             $instance = $command['MAC'];
-        } else {
-            $instance = 'No valid desktop notifier found.';
         }
 
         if (is_string($instance)) {

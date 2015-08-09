@@ -38,9 +38,6 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->method('notify')
             ->with($title, $content);
 
-        $mockTest = $this->getMockObjectGenerator()
-            ->getMock('PHPUnit_Framework_Test');
-
         $fE = new AssertionFailedError($content);
         $partialMock->sendMessage('Failure', $fE->getMessage());
     }
@@ -52,6 +49,10 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             Notify::getInstance()
                 ->sendMessage('HALLO', 'TEST')
         );
+    }
+
+    public function testInstantiationWithParam()
+    {
         $this->assertInstanceOf(
             'MehrAlsNix\Notifier\Notification',
             Notify::getInstance('\MehrAlsNix\Notifier\Commands\Windows')

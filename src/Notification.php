@@ -16,12 +16,14 @@
  */
 
 namespace MehrAlsNix\Notifier;
+use MehrAlsNix\Notifier\Commands\Available;
 
 /**
- * Class Notification
+ * Class Notification.
+ *
  * @package MehrAlsNix\Notifier
  */
-abstract class Notification
+abstract class Notification implements Available
 {
     /**
      * Sends a message.

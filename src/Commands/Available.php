@@ -17,35 +17,18 @@
  */
 
 namespace MehrAlsNix\Notifier\Commands;
-use MehrAlsNix\Notifier\Notification;
 
 /**
- * Class Windows.
+ * Interface Available.
  *
- * @package MehrAlsNix\Notifier
+ * @package MehrAlsNix\Notifier\Commands
  */
-class Windows extends Notification
+interface Available
 {
     /**
-     * Notify with `toast.exe`.
-     *
-     * @param string $title
-     * @param string $message
-     *
-     * @return void
-     */
-    protected function notify($title, $message)
-    {
-        $this->execute(__DIR__ . "/../../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t \"{$title}\" -m \"{$message}\"");
-    }
-
-    /**
-     * @inheritdoc
+     * Checks the availability of a command.
      *
      * @return bool
      */
-    public function isAvailable()
-    {
-        return strtoupper(substr(php_uname('s'), 0, 3)) === 'WIN';
-    }
+    public function isAvailable();
 }

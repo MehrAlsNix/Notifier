@@ -20,12 +20,20 @@ namespace MehrAlsNix\Notifier\Commands;
 
 use MehrAlsNix\Notifier\Notification;
 
+/**
+ * Class Mac.
+ *
+ * @package MehrAlsNix\Notifier\Commands
+ */
 class Mac extends Notification
 {
     /**
+     * Notify with `terminal-notifier`.
+     *
      * @param string $title
      * @param string $message
-     * @return null
+     *
+     * @return void
      */
     protected function notify($title, $message)
     {
@@ -33,6 +41,8 @@ class Mac extends Notification
     }
 
     /**
+     * @inheritdoc
+     *
      * @return bool
      */
     public function isAvailable()
