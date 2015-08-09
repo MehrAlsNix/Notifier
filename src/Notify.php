@@ -51,12 +51,18 @@ class Notify
      */
     protected static function fetch()
     {
-        if ((new Commands\Windows())->isAvailable()) {
-            $instance = new Commands\Windows();
-        } elseif((new Commands\Linux())->isAvailable()) {
-            $instance = new Commands\Linux();
-        } elseif((new Commands\Mac())->isAvailable()) {
-            $instance = new Commands\Mac();
+        $command = array(
+            'LINUX' => new Commands\Linux(),
+            'MAC' => new Commands\Mac(),
+            'WIN' => new Commands\Windows()
+        );
+
+        if ($command['WIN']->isAvailable()) {
+            $instance = $command['WIN'];
+        } elseif($command['LINUX']->isAvailable()) {
+            $instance = $command['LINUX'];
+        } elseif($command['MAC']->isAvailable()) {
+            $instance = $command['MAC'];
         } else {
             $instance = 'No valid desktop notifier found.';
         }
