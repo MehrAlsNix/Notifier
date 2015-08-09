@@ -47,6 +47,15 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 
     public function testNotify()
     {
-        $this->assertInstanceOf('MehrAlsNix\Notifier\Notification', Notify::getInstance()->sendMessage('HALLO', 'TEST'));
+        $this->assertInstanceOf(
+            'MehrAlsNix\Notifier\Notification',
+            Notify::getInstance()
+                ->sendMessage('HALLO', 'TEST')
+        );
+        $this->assertInstanceOf(
+            'MehrAlsNix\Notifier\Notification',
+            Notify::getInstance('\MehrAlsNix\Notifier\Commands\Windows')
+                ->sendMessage('HALLO', 'TEST')
+        );
     }
 }
