@@ -24,6 +24,29 @@
 
 <p><a href="https://travis-ci.org/MehrAlsNix/Notifier"><img src="https://travis-ci.org/MehrAlsNix/Notifier.svg?branch=develop" alt="Build Status"></a> <a href="https://codeclimate.com/github/MehrAlsNix/Notifier"><img src="https://codeclimate.com/github/MehrAlsNix/Notifier/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/MehrAlsNix/Notifier/coverage"><img src="https://codeclimate.com/github/MehrAlsNix/Notifier/badges/coverage.svg" alt="Test Coverage"></a></p>
 
+<h2>
+<a id="install-via-composer" class="anchor" href="#install-via-composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install via composer</h2>
+
+<p>Add a dependency on <code>mehr-als-nix/notifier</code> to your project's <code>composer.json</code> file.</p>
+
+<p>Here is a minimal example of a manually created composer.json file that just defines a dependency on <code>mehr-als-nix/notifier</code></p>
+
+<pre><code>{
+    "require": {
+        "mehr-als-nix/notifier": "~0"
+    }
+}
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Example:</p>
+
+<pre><code>   \MehrAlsNix\Notifier\Notify::getInstance()
+       -&gt;sendMessage('Notification', 'This is a desktop message!');
+</code></pre>
+
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/MehrAlsNix/Notifier">Notifier</a> is maintained by <a href="https://github.com/MehrAlsNix">MehrAlsNix</a>.</span>
 
