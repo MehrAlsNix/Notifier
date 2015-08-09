@@ -29,13 +29,24 @@ class Notify
     /**
      * Get instance.
      *
+     * @param string $className
+     *
      * @return Notification
      *
      * @throws \RuntimeException
      */
-    public static function getInstance()
+    public static function getInstance($className = '')
     {
-        if (!self::$instance instanceof Notification) {
+        if ($className !== '') {
+            try {
+                $ref = new \ReflectionClass($className);
+                if ($ref->isSubclassOf('\MehrAlsNix\Notifier\Notification')) {
+                    self::$instance = $ref->newInstance();
+                }
+            } catch (\ReflectionException $re) {
+                throw new \RuntimeException($re->getMessage());
+            }
+        } elseif (!self::$instance instanceof Notification) {
             self::$instance = self::fetch();
         }
 
