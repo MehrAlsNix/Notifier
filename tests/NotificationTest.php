@@ -29,7 +29,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     public function testNotifyIsCalledByAddFailure()
     {
         $partialMock = $this->getMockBuilder('MehrAlsNix\Notifier\Notification')
-            ->setMethods(['notify'])
+            ->setMethods(array('notify'))
             ->getMockForAbstractClass();
 
         $title = 'Failure';

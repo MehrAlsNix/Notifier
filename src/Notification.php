@@ -58,7 +58,7 @@ abstract class Notification
     protected function execute($command)
     {
         $status = null;
-        $result = [];
+        $result = array();
         exec($command, $result, $status);
         return !$status ? $result : null;
     }
