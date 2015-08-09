@@ -33,8 +33,13 @@ abstract class NotificationBase
     }
 
     /**
+     * Notify.
+     *
+     * {@inheritdoc}
+     *
      * @param string $title
      * @param string $message
+     *
      * @return mixed
      */
     abstract protected function notify($title, $message);
