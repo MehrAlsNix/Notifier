@@ -28,10 +28,14 @@ abstract class Notification
      * .
      * @param $title
      * @param string $msg
+     *
+     * @return $this
      */
     public function sendMessage($title, $msg)
     {
         $this->notify($title, $msg);
+
+        return $this;
     }
 
     /**

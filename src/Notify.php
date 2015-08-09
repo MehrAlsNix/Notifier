@@ -29,6 +29,8 @@ class Notify
     /**
      * Get instance.
      *
+     * @return Notification
+     *
      * @throws \RuntimeException
      */
     public static function getInstance()
@@ -36,6 +38,8 @@ class Notify
         if (!self::$instance instanceof Notification) {
             self::$instance = self::fetch();
         }
+
+        return self::$instance;
     }
 
     /**
@@ -45,12 +49,17 @@ class Notify
      *
      * @throws \RuntimeException
      */
-    protected function fetch()
+    protected static function fetch()
     {
-        $instance = (new Commands\Windows())->isAvailable() ? new Commands\Windows()
-            : (new Commands\Linux())->isAvailable() ? new Commands\Linux()
-                : (new Commands\Mac())->isAvailable() ? new Commands\Mac()
-                    : 'No valid desktop notifier found.';
+        if ((new Commands\Windows())->isAvailable()) {
+            $instance = new Commands\Windows();
+        } elseif((new Commands\Linux())->isAvailable()) {
+            $instance = new Commands\Linux();
+        } elseif((new Commands\Mac())->isAvailable()) {
+            $instance = new Commands\Mac();
+        } else {
+            $instance = 'No valid desktop notifier found.';
+        }
 
         if (is_string($instance)) {
             throw new \RuntimeException($instance);

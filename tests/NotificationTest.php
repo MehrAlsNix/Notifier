@@ -17,6 +17,7 @@
 
 namespace MehrAlsNix\Notifier\Tests;
 
+use MehrAlsNix\Notifier\Notify;
 use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
 
 /**
@@ -42,5 +43,10 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 
         $fE = new AssertionFailedError($content);
         $partialMock->sendMessage('Failure', $fE->getMessage());
+    }
+
+    public function testNotify()
+    {
+        $this->assertInstanceOf('MehrAlsNix\Notifier\Notification', Notify::getInstance()->sendMessage('HALLO', 'TEST'));
     }
 }
