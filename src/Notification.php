@@ -24,10 +24,12 @@ namespace MehrAlsNix\Notifier;
 abstract class Notification
 {
     /**
-     * An error occurred.
+     * Sends a message.
+     * .
+     * @param $title
      * @param string $msg
      */
-    public function addMessage($title, $msg)
+    public function sendMessage($title, $msg)
     {
         $this->notify($title, $msg);
     }
@@ -43,7 +45,10 @@ abstract class Notification
     abstract protected function notify($title, $message);
 
     /**
+     * Executes a shell command.
+     *
      * @param string $command
+     *
      * @return array|null
      */
     protected function execute($command)
