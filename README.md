@@ -35,7 +35,7 @@ Example:
 
 ## Extend
 
-Custom class has to be extended from `\MehrAlsNix\Notifier\Notification`
+Custom class has to extend from `\MehrAlsNix\Notifier\Notification`
 
     <?php
     
@@ -67,7 +67,7 @@ Custom class has to be extended from `\MehrAlsNix\Notifier\Notification`
         }
     }
 
-And can than used with:
+And can than be used like:
 
 ```
     \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
