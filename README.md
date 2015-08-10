@@ -2,6 +2,16 @@
 
 [![Build Status](https://travis-ci.org/MehrAlsNix/Notifier.svg?branch=develop)](https://travis-ci.org/MehrAlsNix/Notifier) [![Code Climate](https://codeclimate.com/github/MehrAlsNix/Notifier/badges/gpa.svg)](https://codeclimate.com/github/MehrAlsNix/Notifier) [![Test Coverage](https://codeclimate.com/github/MehrAlsNix/Notifier/badges/coverage.svg)](https://codeclimate.com/github/MehrAlsNix/Notifier/coverage)
 
+## Desktop Notifications
+
+`Notifier` acts as a wrapper for desktop notify applications on different operating systems.
+ 
+ Following notify wrappers are build in and would make checks to chose one of:
+ 
+ * notify-send (Linux)
+ * terminal-notifier (Mac)
+ * toast.exe (Windows)
+
 ## Install via composer
 
 Add a dependency on `mehr-als-nix/notifier` to your project's `composer.json` file.
@@ -10,7 +20,7 @@ Here is a minimal example of a manually created composer.json file that just def
 ```
 {
     "require": {
-        "mehr-als-nix/notifier": "~0"
+        "mehr-als-nix/notifier": "~1"
     }
 }
 ```
@@ -21,4 +31,45 @@ Example:
 ```
    \MehrAlsNix\Notifier\Notify::getInstance()
        ->sendMessage('Notification', 'This is a desktop message!');
+```
+
+## Extend
+
+Custom class has to be extended from `\MehrAlsNix\Notifier\Notification`
+
+    <?php
+    
+    namespace \Custom\Notifier;
+    
+    class GrowlNotifier extends \MehrAlsNix\Notifier\Notification
+    {
+        /**
+         * Notify with `growlnotify`.
+         *
+         * @param string $title
+         * @param string $message
+         *
+         * @return void
+         */
+        protected function notify($title, $message)
+        {
+            $this->execute("growlnotify -t '{$title}' -m '{$message}'");
+        }
+    
+        /**
+         * @inheritdoc
+         *
+         * @return bool
+         */
+        public function isAvailable()
+        {
+            return (bool) $this->execute('which growlnotify');
+        }
+    }
+
+And can than used with:
+
+```
+    \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
+        ->sendMessage('Notification', 'This is a desktop message!');
 ```
