@@ -63,6 +63,10 @@ Custom class has to extend from `\MehrAlsNix\Notifier\Notification`
          */
         public function isAvailable()
         {
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                return (bool) $this->execute('where.exe growlnotify');
+            }
+            
             return (bool) $this->execute('which growlnotify');
         }
     }
