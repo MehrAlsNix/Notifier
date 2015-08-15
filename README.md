@@ -71,7 +71,7 @@ Custom class has to extend from `\MehrAlsNix\Notifier\Notification`
         }
     }
 
-And can than be used like:
+And can then be used like:
 
 ```
     \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
