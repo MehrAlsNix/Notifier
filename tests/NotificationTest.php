@@ -59,4 +59,40 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                 ->sendMessage('HALLO', 'TEST')
         );
     }
+
+    /**
+     * @expectedException \MehrAlsNix\Notifier\Exception
+     */
+    public function testInstantiationMessageBasedWithoutMsg()
+    {
+        $this->assertInstanceOf(
+            'MehrAlsNix\Notifier\Notification',
+            Notify::getInstance()
+                ->setTitle('HALLO')
+                ->send()
+        );
+    }
+
+    public function testInstantiationMessageBased()
+    {
+        $this->assertInstanceOf(
+            'MehrAlsNix\Notifier\Notification',
+            Notify::getInstance()
+                ->setTitle('HALLO')
+                ->setMessage('TEST')
+                ->send()
+        );
+    }
+
+    public function testInstantiationWithIcon()
+    {
+        $this->assertInstanceOf(
+            'MehrAlsNix\Notifier\Notification',
+            Notify::getInstance()
+                ->setTitle('HALLO')
+                ->setMessage('TEST')
+                ->setIcon(__DIR__ . '/../resources/levels/128x128/info.png')
+                ->send()
+        );
+    }
 }

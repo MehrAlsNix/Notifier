@@ -15,19 +15,13 @@
  * @link      http://github.com/MehrAlsNix/Notifier
  */
 
-namespace MehrAlsNix\Notifier\Commands;
+namespace MehrAlsNix\Notifier;
 
 /**
- * Interface Available.
+ * Class Exception
  *
- * @package MehrAlsNix\Notifier\Commands
+ * @package MehrAlsNix\Notifier
  */
-interface Available
+class Exception extends \RuntimeException
 {
-    /**
-     * Checks the availability of a command.
-     *
-     * @return bool
-     */
-    public function isAvailable();
 }

@@ -13,7 +13,6 @@
  * @copyright 2015 MehrAlsNix (http://www.mehralsnix.de)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
  * @link      http://github.com/MehrAlsNix/Notifier
- * @version   $Id$
  */
 
 namespace MehrAlsNix\Notifier\Commands;
@@ -31,12 +30,15 @@ class Windows extends Notification
      *
      * @param string $title
      * @param string $message
+     * @param string $icon    optional
      *
      * @return void
      */
-    protected function notify($title, $message)
+    protected function notify($title, $message, $icon = null)
     {
-        $this->execute(__DIR__ . "/../../vendor/nels-o/toaster/toast/bin/Release/toast.exe -t \"{$title}\" -m \"{$message}\"");
+        $app = '/../../vendor/nels-o/toaster/toast/bin/Release/toast.exe';
+        $icon = is_string($icon) ? " -p \"$icon\"" : '';
+        $this->execute(__DIR__ . "$app -t \"{$title}\" -m \"{$message}\"$icon");
     }
 
     /**

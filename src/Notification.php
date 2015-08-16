@@ -16,6 +16,7 @@
  */
 
 namespace MehrAlsNix\Notifier;
+
 use MehrAlsNix\Notifier\Commands\Available;
 
 /**
@@ -23,19 +24,39 @@ use MehrAlsNix\Notifier\Commands\Available;
  *
  * @package MehrAlsNix\Notifier
  */
-abstract class Notification implements Available
+abstract class Notification extends Message implements Available
 {
+    /**
+     * @return $this
+     *
+     * @throws Exception
+     */
+    public function send()
+    {
+        if ($this->message === null) {
+            throw new Exception(
+                'No message set. You have to set one with Message::setMessage()'
+                . ' or use Notification::sendMessage(title, msg) instead.'
+            );
+        }
+
+        $this->notify($this->title, $this->message, realpath($this->icon));
+
+        return $this;
+    }
+
     /**
      * Sends a message.
      * .
      * @param $title
      * @param string $msg
+     * @param string $icon optional
      *
      * @return $this
      */
-    public function sendMessage($title, $msg)
+    public function sendMessage($title, $msg, $icon = null)
     {
-        $this->notify($title, $msg);
+        $this->notify($title, $msg, is_string($icon) ? $icon : realpath($this->icon));
 
         return $this;
     }
@@ -45,10 +66,11 @@ abstract class Notification implements Available
      *
      * @param string $title
      * @param string $message
+     * @param string $icon    optional
      *
      * @return mixed
      */
-    abstract protected function notify($title, $message);
+    abstract protected function notify($title, $message, $icon = null);
 
     /**
      * Executes a shell command.

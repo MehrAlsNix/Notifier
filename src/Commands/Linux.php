@@ -13,7 +13,6 @@
  * @copyright 2015 MehrAlsNix (http://www.mehralsnix.de)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
  * @link      http://github.com/MehrAlsNix/Notifier
- * @version   $Id$
  */
 
 namespace MehrAlsNix\Notifier\Commands;
@@ -32,12 +31,15 @@ class Linux extends Notification
      *
      * @param string $title
      * @param string $message
+     * @param string $icon    optional
      *
      * @return void
      */
-    protected function notify($title, $message)
+    protected function notify($title, $message, $icon = null)
     {
-        $this->execute("notify-send -t 2000 '{$title}' '$message'");
+        $icon = is_string($icon) ? $icon : $this->icon;
+
+        $this->execute("notify-send -t 2000 -i {$icon} '{$title}' '$message'");
     }
 
     /**
