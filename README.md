@@ -93,6 +93,6 @@ or
     \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
        ->setTitle('Notification')
        ->setMessage('This is a desktop message!')
-       ->setIcon('/path/to/icon.png');
+       ->setIcon('/path/to/icon.png')
        ->send();
 ```
