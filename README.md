@@ -25,7 +25,7 @@ Here is a minimal example of a manually created composer.json file that just def
 }
 ```
 
-For PHP environments prior to version 5.5 use instead:
+For PHP environments prior to version 5.6 use instead:
 ```
 {
     "require": {
