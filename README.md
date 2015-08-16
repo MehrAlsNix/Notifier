@@ -20,6 +20,15 @@ Here is a minimal example of a manually created composer.json file that just def
 ```
 {
     "require": {
+        "mehr-als-nix/notifier": "~2"
+    }
+}
+```
+
+For PHP environments prior to version 5.5 use instead:
+```
+{
+    "require": {
         "mehr-als-nix/notifier": "~1"
     }
 }
