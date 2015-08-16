@@ -89,7 +89,8 @@ And can then be used like:
         ->sendMessage('Notification', 'This is a desktop message!');
 ```
 or
-```\MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
+```
+    \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
        ->setTitle('Notification')
        ->setMessage('This is a desktop message!')
        ->setIcon('/path/to/icon.png');
