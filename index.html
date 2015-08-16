@@ -22,7 +22,21 @@
       <h1>
 <a id="notifier" class="anchor" href="#notifier" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notifier</h1>
 
-<p><a href="https://travis-ci.org/MehrAlsNix/Notifier"><img src="https://travis-ci.org/MehrAlsNix/Notifier.svg?branch=develop" alt="Build Status"></a> <a href="https://codeclimate.com/github/MehrAlsNix/Notifier"><img src="https://codeclimate.com/github/MehrAlsNix/Notifier/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/MehrAlsNix/Notifier/coverage"><img src="https://codeclimate.com/github/MehrAlsNix/Notifier/badges/coverage.svg" alt="Test Coverage"></a></p>
+<p><a href="https://travis-ci.org/MehrAlsNix/Notifier"><img src="https://travis-ci.org/MehrAlsNix/Notifier.svg?branch=develop" alt="Build Status"></a> <a href="https://codeclimate.com/github/MehrAlsNix/Notifier"><img src="https://codeclimate.com/github/MehrAlsNix/Notifier/badges/gpa.svg" alt="Code Climate"></a> <a href="https://codeclimate.com/github/MehrAlsNix/Notifier/coverage"><img src="https://codeclimate.com/github/MehrAlsNix/Notifier/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://www.versioneye.com/user/projects/55c76bc0653762001a003770"><img src="https://www.versioneye.com/user/projects/55c76bc0653762001a003770/badge.svg?style=flat" alt="Dependency Status"></a> <a href="http://hhvm.h4cc.de/package/mehr-als-nix/notifier"><img src="http://hhvm.h4cc.de/badge/mehr-als-nix/notifier.svg" alt="HHVM Status"></a></p>
+
+<h2>
+<a id="desktop-notifications" class="anchor" href="#desktop-notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Desktop Notifications</h2>
+
+<p><code>Notifier</code> acts as a wrapper for desktop notify applications on different operating systems.</p>
+
+<p>Following notify wrappers are build in and would make checks to chose one of:</p>
+
+<ul>
+<li>notify-send (Linux)</li>
+<li>terminal-notifier (Mac)</li>
+<li>toast.exe (Windows) <a href="https://github.com/nels-o/toaster">nels-o/toaster</a>
+</li>
+</ul>
 
 <h2>
 <a id="install-via-composer" class="anchor" href="#install-via-composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install via composer</h2>
@@ -33,7 +47,16 @@
 
 <pre><code>{
     "require": {
-        "mehr-als-nix/notifier": "~0"
+        "mehr-als-nix/notifier": "~2"
+    }
+}
+</code></pre>
+
+<p>For PHP environments prior to version 5.5 use instead:</p>
+
+<pre><code>{
+    "require": {
+        "mehr-als-nix/notifier": "~1"
     }
 }
 </code></pre>
@@ -45,6 +68,52 @@
 
 <pre><code>   \MehrAlsNix\Notifier\Notify::getInstance()
        -&gt;sendMessage('Notification', 'This is a desktop message!');
+</code></pre>
+
+<h2>
+<a id="extend" class="anchor" href="#extend" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extend</h2>
+
+<p>Custom class has to extend from <code>\MehrAlsNix\Notifier\Notification</code></p>
+
+<pre><code>&lt;?php
+
+namespace \Custom\Notifier;
+
+class GrowlNotifier extends \MehrAlsNix\Notifier\Notification
+{
+    /**
+     * Notify with `growlnotify`.
+     *
+     * @param string $title
+     * @param string $message
+     *
+     * @return void
+     */
+    protected function notify($title, $message)
+    {
+        $this-&gt;execute("growlnotify -t '{$title}' -m '{$message}'");
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @return bool
+     */
+    public function isAvailable()
+    {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            return (bool) $this-&gt;execute('where.exe growlnotify');
+        }
+
+        return (bool) $this-&gt;execute('which growlnotify');
+    }
+}
+</code></pre>
+
+<p>And can then be used like:</p>
+
+<pre><code>    \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
+        -&gt;sendMessage('Notification', 'This is a desktop message!');
 </code></pre>
 
       <footer class="site-footer">
