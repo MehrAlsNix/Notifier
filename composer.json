@@ -22,11 +22,11 @@
   },
   "require": {
     "php": ">=5.5",
-    "phpunit/phpunit": "~4",
     "nels-o/toaster": "dev-master"
   },
   "require-dev": {
-    "codeclimate/php-test-reporter": "0.*"
+    "codeclimate/php-test-reporter": "0.*",
+    "phpunit/phpunit": "~4"
   },
   "autoload": {
     "psr-4": {
