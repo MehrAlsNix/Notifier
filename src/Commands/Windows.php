@@ -37,6 +37,10 @@ class Windows extends Notification
     protected function notify($title, $message, $icon = null)
     {
         $app = '/../../vendor/nels-o/toaster/toast/bin/Release/toast.exe';
+        if (!file_exists($app)) {
+            $app = '/../../../../nels-o/toaster/toast/bin/Release/toast.exe';
+        }
+
         $icon = is_string($icon) ? " -p \"$icon\"" : '';
         $this->execute(__DIR__ . "$app -t \"{$title}\" -m \"{$message}\"$icon");
     }
