@@ -57,12 +57,14 @@ Custom class has to extend from `\MehrAlsNix\Notifier\Notification`
          *
          * @param string $title
          * @param string $message
+         * @param string $icon    optional
          *
          * @return void
          */
-        protected function notify($title, $message)
+        protected function notify($title, $message, $icon = null)
         {
-            $this->execute("growlnotify -t '{$title}' -m '{$message}'");
+            $icon = is_string($icon) ? $icon : $this->icon;
+            $this->execute("growlnotify -t '{$title}' -m '{$message}' --image '{$icon}'");
         }
     
         /**
@@ -85,4 +87,11 @@ And can then be used like:
 ```
     \MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
         ->sendMessage('Notification', 'This is a desktop message!');
+```
+or
+```\MehrAlsNix\Notifier\Notify::getInstance('\Custom\Notifier\GrowlNotifier')
+       ->setTitle('Notification')
+       ->setMessage('This is a desktop message!')
+       ->setIcon('/path/to/icon.png');
+       ->send();
 ```
