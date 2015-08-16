@@ -31,5 +31,5 @@ script:
   - phpunit
 
 after_script:
-  - if [ "`php -m | grep -i xdebug`" ]; then CODECLIMATE_REPO_TOKEN=752a6dea136d451cf6c17fad485c2cc734fc745325cc7e177f8a6bfe2b77de66 ./vendor/bin/test-reporter --stdout > codeclimate.json; fi
-  - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
+  - if [[$(phpenv version-name) != "nightly" && $(phpenv version-name) != "hhvm"]]; then CODECLIMATE_REPO_TOKEN=752a6dea136d451cf6c17fad485c2cc734fc745325cc7e177f8a6bfe2b77de66 ./vendor/bin/test-reporter --stdout > codeclimate.json; fi
+  - if [[$(phpenv version-name) != "nightly" && $(phpenv version-name) != "hhvm"]]; "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
