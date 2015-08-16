@@ -10,7 +10,7 @@
  
  * notify-send (Linux)
  * terminal-notifier (Mac)
- * toast.exe (Windows)
+ * toast.exe (Windows) [nels-o/toaster](https://github.com/nels-o/toaster)
 
 ## Install via composer
 
