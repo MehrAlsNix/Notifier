@@ -36,13 +36,13 @@ class Windows extends Notification
      */
     protected function notify($title, $message, $icon = null)
     {
-        $app = '/../../vendor/nels-o/toaster/toast/bin/Release/toast.exe';
-        if (!file_exists($app)) {
-            $app = '/../../../../nels-o/toaster/toast/bin/Release/toast.exe';
-        }
+        $app = __DIR__ . '/../../bin/toast.exe';
+
+        $title   = iconv('UTF-8', 'ASCII//TRANSLIT', $title);
+        $message = iconv('UTF-8', 'ASCII//TRANSLIT', $message);
 
         $icon = is_string($icon) ? " -p \"$icon\"" : '';
-        $this->execute(__DIR__ . "$app -t \"{$title}\" -m \"{$message}\"$icon");
+        $this->execute("$app -t \"{$title}\" -m \"{$message}\"$icon");
     }
 
     /**

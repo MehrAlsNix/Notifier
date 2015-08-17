@@ -4,20 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "be6360e69f98f7d3b8d4f832d3372e66",
-    "packages": [
-        {
-            "name": "nels-o/toaster",
-            "version": "dev-master",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/nels-o/toaster/archive/master.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        }
-    ],
+    "hash": "7d3000a8c283945bea2f48dbbf513cc4",
+    "packages": [],
     "packages-dev": [
         {
             "name": "codeclimate/php-test-reporter",
@@ -1494,13 +1482,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "nels-o/toaster": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5"
+        "php": ">=5.6"
     },
     "platform-dev": []
 }

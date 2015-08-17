@@ -21,8 +21,7 @@
     "preferred-install": "dist"
   },
   "require": {
-    "php": ">=5.6",
-    "nels-o/toaster": "dev-master"
+    "php": ">=5.6"
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "0.*",
@@ -33,18 +32,5 @@
       "MehrAlsNix\\Notifier\\": "src",
       "MehrAlsNix\\Notifier\\Tests\\": "tests"
     }
-  },
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "nels-o/toaster",
-        "version": "dev-master",
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/nels-o/toaster/archive/master.zip"
-        }
-      }
-    }
-  ]
+  }
 }
