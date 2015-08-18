@@ -16,6 +16,7 @@
  */
 
 namespace MehrAlsNix\Notifier\Commands;
+
 use MehrAlsNix\Notifier\Notification;
 
 /**
@@ -41,7 +42,7 @@ class Windows extends Notification
         $title   = iconv('UTF-8', 'ASCII//TRANSLIT', $title);
         $message = iconv('UTF-8', 'ASCII//TRANSLIT', $message);
 
-        $icon = is_string($icon) ? " -p \"$icon\"" : '';
+        $icon = is_string($icon) ? " -p \"$icon\"" : $this->icon;
         $this->execute("$app -t \"{$title}\" -m \"{$message}\"$icon");
     }
 
